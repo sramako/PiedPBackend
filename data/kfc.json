@@ -1,0 +1,230 @@
+{
+  "name": "KFC",
+  "Menu": [
+    {
+      "name": "Chicken",
+      "items": [
+        {
+          "name": "Big8",
+          "price": "523.81"
+        },
+        {
+          "name": "Big8Meal",
+          "price": "647.62"
+        },
+        {
+          "name": "HotandCrispy",
+          "price": "195.24"
+        },
+        {
+          "name": "FriendshipBucketMeal",
+          "price": "657.14"
+        },
+        {
+          "name": "TripleTreat",
+          "price": "642.86"
+        },
+        {
+          "name": "Click and Share",
+          "price": "380.00"
+        },
+        {
+          "name": "FrienshipBucket",
+          "price": "614.29"
+        },
+        {
+          "name": "MinglesBucket",
+          "price": "284.76"
+        },
+        {
+          "name": "SmokyGrilled4Pcs",
+          "price": "361.90"
+        },
+        {
+          "name": "SmokyGrilled6Pcs",
+          "price": "361.90"
+        },
+        {
+          "name": "SmokyGrilled8Pcs",
+          "price": "361.90"
+        }
+      ]
+    },
+    {
+      "name": "Burgers",
+      "items": [
+        {
+          "name": "5in1ZingerBox",
+          "price": "227.62"
+        },
+        {
+          "name": "ChickenZinger",
+          "price": "152.38"
+        },
+        {
+          "name": "VegZinger",
+          "price": "138.10"
+        },
+        {
+          "name": "VegLonger",
+          "price": "71.43"
+        }
+      ]
+    },
+    null,
+    {
+      "name": "Snacks",
+      "items": [
+        {
+          "name": "LargePopcorn",
+          "price": "190.48"
+        },
+        {
+          "name": "VegStrips4Pcs",
+          "price": "123.81"
+        },
+        {
+          "name": "BonelessStrips6Pcs",
+          "price": "204.76"
+        },
+        {
+          "name": "LargePopcorn",
+          "price": "190.48"
+        },
+        {
+          "name": "HotWings4Pcs",
+          "price": "128.57"
+        },
+        {
+          "name": "SmokyGrilled1Pc",
+          "price": "104.76"
+        },
+        {
+          "name": "SmokyGrilled2Pcs",
+          "price": "190.48"
+        }
+      ]
+    },
+    {
+      "name": "RiceBowlz",
+      "items": [
+        {
+          "name": "5in1RiceBox",
+          "price": "227.62"
+        },
+        {
+          "name": "CickenRiceBowl",
+          "price": "142.86"
+        }
+      ]
+    },
+    {
+      "name": "Beverages",
+      "items": [
+        {
+          "name": "Pepsi",
+          "price": "28.57"
+        },
+        {
+          "name": "RedBull",
+          "price": "138.10"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+
+/* name=KFC
+Menu[0]
+  name=Chicken
+  items[0]
+    name=Big8
+    price=523.81
+  items[1]
+    name=Big8Meal
+    price=647.62
+  items[2]
+    name=HotandCrispy
+    price=195.24
+  items[3]
+    name=FriendshipBucketMeal
+    price=657.14
+  items[4]
+    name=TripleTreat
+    price=642.86
+  items[5]
+    name=Click and Share
+    price=380.00
+  items[6]
+    name=FrienshipBucket
+    price=614.29
+  items[7]
+    name=MinglesBucket
+    price=284.76
+  items[8]
+    name=SmokyGrilled4Pcs
+    price=361.90
+  items[9]
+    name=SmokyGrilled6Pcs
+    price=361.90
+  items[10]
+    name=SmokyGrilled8Pcs
+    price=361.90
+
+Menu[1]
+  name=Burgers
+  items[0]
+    name=5in1ZingerBox
+    price=227.62
+  items[1]
+    name=ChickenZinger
+    price=152.38
+  items[2]
+    name=VegZinger
+    price=138.10
+  items[3]
+    name=VegLonger
+    price=71.43
+Menu[3]
+  name=Snacks
+  items[0]
+    name=LargePopcorn
+    price=190.48
+  items[1]
+    name=VegStrips4Pcs
+    price=123.81
+  items[2]
+    name=BonelessStrips6Pcs
+    price=204.76
+  items[3]
+    name=LargePopcorn
+    price=190.48
+  items[4]
+    name=HotWings4Pcs
+    price=128.57
+  items[5]
+    name=SmokyGrilled1Pc
+    price=104.76
+  items[6]
+    name=SmokyGrilled2Pcs
+    price=190.48
+Menu[4]
+  name=RiceBowlz
+  items[0]
+    name=5in1RiceBox
+    price=227.62
+  items[1]
+    name=CickenRiceBowl
+    price=142.86
+Menu[5]
+  name=Beverages
+  items[0]
+    name=Pepsi
+    price=28.57
+  items[1]
+    name=RedBull
+    price=138.10
+    */
