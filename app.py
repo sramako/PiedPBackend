@@ -4,7 +4,6 @@ from flask import Flask
 app = Flask(__name__)
 
 import pymongo
-mydb = myclient["webtech2proj"]
 myclient = pymongo.MongoClient("mongodb://sraman:sraman123@ds157223.mlab.com:57223/webtech2proj")
 mydb = myclient['webtech2proj']
 
@@ -14,6 +13,7 @@ def hello():
 
 @app.route('/menu')
 def menu():
+	mycol = mydb["places"]
 	name = request.args.get('name')
 	m = []
 	for i in mycol.find({'name':name},{'_id':0, 'Menu':1}):
@@ -22,6 +22,7 @@ def menu():
 
 @app.route('/restaurants')
 def restaurants():
+	mycol = mydb["places"]
 	ret = []
 	for i in mycol.find({},{'_id':0, 'name':1}):
 		ret.append(i['name'])
