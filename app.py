@@ -1,5 +1,7 @@
 import os
 from flask import Flask
+from flask import request
+import json
 
 app = Flask(__name__)
 
@@ -18,7 +20,7 @@ def menu():
 	m = []
 	for i in mycol.find({'name':name},{'_id':0, 'Menu':1}):
 		m.append(i['Menu'])
-	return m
+	return json.dumps(m, separators=(',',':'))
 
 @app.route('/restaurants')
 def restaurants():
@@ -26,9 +28,9 @@ def restaurants():
 	ret = []
 	for i in mycol.find({},{'_id':0, 'name':1}):
 		ret.append(i['name'])
-	return ret
+	return ' '.join(ret)
 
 if __name__ == '__main__':
-    # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+	app.run(host='0.0.0.0', port=port)
+	# app.run()
