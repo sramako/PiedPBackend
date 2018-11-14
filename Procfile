@@ -1,1 +1,1 @@
-web: python2.7 app.py
+web: gunicorn hello:app
