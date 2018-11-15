@@ -1,14 +1,4 @@
-import pymongo
-mydb = myclient["webtech2proj"]
-myclient = pymongo.MongoClient("mongodb://sraman:sraman123@ds157223.mlab.com:57223/webtech2proj")
-mydb = myclient['webtech2proj']
-
-# print(mydb.list_collection_names())
-mycol = mydb["places"]
-
-mydict = { "name": "KFC", "address": "Kathriguppe" }
-
-mydict = {
+{
   "name": "KFC",
   "Menu": [
     {
@@ -143,14 +133,95 @@ mydict = {
   ]
 }
 
-mycol.insert_one(mydict)
 
-mycol.delete_one({'name':'KFC'})
+/* name=KFC
+Menu[0]
+  name=Chicken
+  items[0]
+    name=Big8
+    price=523.81
+  items[1]
+    name=Big8Meal
+    price=647.62
+  items[2]
+    name=HotandCrispy
+    price=195.24
+  items[3]
+    name=FriendshipBucketMeal
+    price=657.14
+  items[4]
+    name=TripleTreat
+    price=642.86
+  items[5]
+    name=Click and Share
+    price=380.00
+  items[6]
+    name=FrienshipBucket
+    price=614.29
+  items[7]
+    name=MinglesBucket
+    price=284.76
+  items[8]
+    name=SmokyGrilled4Pcs
+    price=361.90
+  items[9]
+    name=SmokyGrilled6Pcs
+    price=361.90
+  items[10]
+    name=SmokyGrilled8Pcs
+    price=361.90
 
-//GET MENU
-for i in mycol.find({'name':'KFC'},{'_id':0, 'Menu':1}):
-	print(i['Menu'])
-
-//GET restaurants
-for i in mycol.find({},{'_id':0, 'name':1}):
-	print(i['name'])
+Menu[1]
+  name=Burgers
+  items[0]
+    name=5in1ZingerBox
+    price=227.62
+  items[1]
+    name=ChickenZinger
+    price=152.38
+  items[2]
+    name=VegZinger
+    price=138.10
+  items[3]
+    name=VegLonger
+    price=71.43
+Menu[2]
+  name=Snacks
+  items[0]
+    name=LargePopcorn
+    price=190.48
+  items[1]
+    name=VegStrips4Pcs
+    price=123.81
+  items[2]
+    name=BonelessStrips6Pcs
+    price=204.76
+  items[3]
+    name=LargePopcorn
+    price=190.48
+  items[4]
+    name=HotWings4Pcs
+    price=128.57
+  items[5]
+    name=SmokyGrilled1Pc
+    price=104.76
+  items[6]
+    name=SmokyGrilled2Pcs
+    price=190.48
+Menu[3]
+  name=RiceBowlz
+  items[0]
+    name=5in1RiceBox
+    price=227.62
+  items[1]
+    name=CickenRiceBowl
+    price=142.86
+Menu[4]
+  name=Beverages
+  items[0]
+    name=Pepsi
+    price=28.57
+  items[1]
+    name=RedBull
+    price=138.10
+    */
