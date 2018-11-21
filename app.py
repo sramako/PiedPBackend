@@ -53,7 +53,7 @@ def price():
 	# name = request.args.get('restaurant')
 	# category = request.args.get('item')
 	name = "KFC"
-	item = "Big8"
+	item = "ChickenZinger"
 	m = []
 	for i in mycol.find({'name':name},{'_id':0, 'Menu':1}):
 		m.append(i['Menu'])
@@ -61,10 +61,11 @@ def price():
 	menu=dict()
 	for i in m:
 		for dish in i["items"]:
-			print(dish["name"])
+			# print(dish["name"])
 			if(dish["name"]==item):
+				print(dish["price"])
 				return json.dumps({"price":dish["price"]}, separators=(',',':'))
-		return json.dumps({"price":null}, separators=(',',':'))
+		return json.dumps({"price":"NF"}, separators=(',',':'))
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
