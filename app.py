@@ -47,6 +47,25 @@ def categorycontent():
 				menu[dish["name"]]=dish["price"]
 	return json.dumps(menu, separators=(',',':'))
 
+@app.route('/price')
+def price():
+	mycol = mydb["places"]
+	# name = request.args.get('restaurant')
+	# category = request.args.get('item')
+	name = "KFC"
+	item = "Big8"
+	m = []
+	for i in mycol.find({'name':name},{'_id':0, 'Menu':1}):
+		m.append(i['Menu'])
+	m=m[0]
+	menu=dict()
+	for i in m:
+		for dish in i["items"]:
+			if(dish["name"]==item) {
+				return json.dumps({"price":dish["price"]}, separators=(',',':'))
+			}
+		return json.dumps({"price":null}, separators=(',',':'))
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
 	CORS(app, resources=r'/*')
