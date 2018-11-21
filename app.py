@@ -4,6 +4,7 @@ from flask import request
 import json
 from flask_cors import CORS, cross_origin
 
+
 app = Flask(__name__)
 
 import pymongo
