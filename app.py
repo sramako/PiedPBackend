@@ -61,9 +61,9 @@ def price():
 	menu=dict()
 	for i in m:
 		for dish in i["items"]:
-			if(dish["name"]==item) {
+			print(dish["name"])
+			if(dish["name"]==item):
 				return json.dumps({"price":dish["price"]}, separators=(',',':'))
-			}
 		return json.dumps({"price":null}, separators=(',',':'))
 
 if __name__ == '__main__':
