@@ -63,8 +63,9 @@ def price():
 			if(dish["name"]==item):
 				print(dish["price"])
 				return json.dumps({"price":dish["price"]}, separators=(',',':'))
-		return json.dumps({}, separators=(',',':'))
 
+	return json.dumps("{}")
+	
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
 	CORS(app, resources=r'/*')
