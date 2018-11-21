@@ -31,6 +31,22 @@ def restaurants():
 		ret.append(i['name'])
 	return ' '.join(ret)
 
+@app.route('/categorycontent')
+def categorycontent():
+	mycol = mydb["places"]
+	name = request.args.get('name')
+	category = request.args.get('category')
+	m = []
+	for i in mycol.find({'name':name},{'_id':0, 'Menu':1}):
+		m.append(i['Menu'])
+	m=m[0]
+	menu=dict()
+	for i in m:
+		if i["name"]==category:
+			for dish in i["items"]:
+				menu[dish["name"]]=dish["price"]
+	return json.dumps(menu, separators=(',',':'))
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
 	CORS(app, resources=r'/*')
