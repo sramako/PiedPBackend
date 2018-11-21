@@ -11,12 +11,10 @@ myclient = pymongo.MongoClient("mongodb://sraman:sraman123@ds157223.mlab.com:572
 mydb = myclient['webtech2proj']
 
 @app.route('/')
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def hello():
     return 'Ako: All endponts are live.'
 
 @app.route('/menu')
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def menu():
 	mycol = mydb["places"]
 	name = request.args.get('name')
@@ -26,8 +24,6 @@ def menu():
 	return json.dumps(m, separators=(',',':'))
 
 @app.route('/restaurants')
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
-
 def restaurants():
 	mycol = mydb["places"]
 	ret = []
