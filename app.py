@@ -64,8 +64,8 @@ def price():
 				print(dish["price"])
 				return json.dumps({"price":dish["price"]}, separators=(',',':'))
 
-	return json.dumps("{}")
-	
+	return "{price:NF}"
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
 	CORS(app, resources=r'/*')
