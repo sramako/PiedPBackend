@@ -50,10 +50,8 @@ def categorycontent():
 @app.route('/price')
 def price():
 	mycol = mydb["places"]
-	# name = request.args.get('restaurant')
-	# category = request.args.get('item')
-	name = "KFC"
-	item = "ChickenZinger"
+	name = request.args.get('restaurant')
+	category = request.args.get('item')
 	m = []
 	for i in mycol.find({'name':name},{'_id':0, 'Menu':1}):
 		m.append(i['Menu'])
