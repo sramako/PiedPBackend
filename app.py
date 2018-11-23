@@ -65,6 +65,24 @@ def price():
 
 	return "{price:NF}"
 
+@app.route('/content')
+def category():
+	mycol=mydb['places']
+	name=request.args.get('name')
+	m=[]
+	for i in mycol.find({'name':name},{'_id':0, 'Menu':1}):
+		m.append(i['Menu'])
+	m=m[0]
+	menu=[]
+	# key="category"
+	# menu["category"]={}
+	# items=[]
+	for i in m:
+		menu.append(i['name'])
+	return json.dumps(menu,separators=(',',':'))
+
+
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
 	CORS(app, resources=r'/*')
