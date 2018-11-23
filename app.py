@@ -82,18 +82,33 @@ def category():
 	return json.dumps(menu,separators=(',',':'))
 
 @app.route('/payment')
-	def category():
-		mycol=mydb['payments']
-		name=request.args.get('name')
-		check=mycol.find_one({"user":name},{"_id":0})
-		if(check==None):
-			mycol.insert_one({"user":name,"status":0})
-		check=mycol.find_one({"user":name},{"_id":0})
-		if(check['status']==0):
-			return json.dumps({"status":"waiting"},separators=(',',':'))
-		elif(check['status']==1):
-			mycol.delete_one({"user":"Sraman"})
-			return json.dumps({"status":"success"},separators=(',',':'))
+def payment():
+	mycol=mydb['payments']
+	name=request.args.get('name')
+	check=mycol.find_one({"user":name},{"_id":0})
+	if(check==None):
+		mycol.insert_one({"user":name,"status":0})
+	check=mycol.find_one({"user":name},{"_id":0})
+	if(check['status']==0):
+		return json.dumps({"status":"waiting"},separators=(',',':'))
+	elif(check['status']==1):
+		mycol.delete_one({"user":name})
+		return json.dumps({"status":"success"},separators=(',',':'))
+
+@app.route('/paymentgateway')
+def gateway():
+	mycol=mydb['payments']
+	name=request.args.get('name')
+	check=mycol.find_one({"user":name},{"_id":0})
+	if(check==None):
+		return json.dumps({"status":"failed"},separators=(',',':'))
+	elif(check['status']==0):
+		mycol.delete_one({"user":name})
+		mycol.insert_one({"user":name,"status":1})
+		return json.dumps({"status":"success"},separators=(',',':'))
+	elif(check['status']==1):
+		return json.dumps({"status":"aborted"},separators=(',',':'))
+
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
