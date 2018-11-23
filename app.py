@@ -81,7 +81,19 @@ def category():
 		menu.append(i['name'])
 	return json.dumps(menu,separators=(',',':'))
 
-
+@app.route('/payment')
+	def category():
+		mycol=mydb['payments']
+		name=request.args.get('name')
+		check=mycol.find_one({"user":name},{"_id":0})
+		if(check==None):
+			mycol.insert_one({"user":name,"status":0})
+		check=mycol.find_one({"user":name},{"_id":0})
+		if(check['status']==0):
+			return json.dumps({"status":"waiting"},separators=(',',':'))
+		elif(check['status']==1):
+			mycol.delete_one({"user":"Sraman"})
+			return json.dumps({"status":"success"},separators=(',',':'))
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))

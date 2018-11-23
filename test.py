@@ -1,5 +1,4 @@
 import pymongo
-mydb = myclient["webtech2proj"]
 myclient = pymongo.MongoClient("mongodb://sraman:sraman123@ds157223.mlab.com:57223/webtech2proj")
 mydb = myclient['webtech2proj']
 
@@ -154,3 +153,28 @@ for i in mycol.find({'name':'KFC'},{'_id':0, 'Menu':1}):
 //GET restaurants
 for i in mycol.find({},{'_id':0, 'name':1}):
 	print(i['name'])
+
+
+mycol = mydb["payments"]
+mycol.delete_many({})
+
+mycol.insert_one({"user":"Sraman","status":1})
+mycol.delete_one({"user":"Sraman"})
+
+check
+
+check=mycol.find_one({"user":"Sraman"},{"_id":0})
+if(check==None):
+	mycol.insert_one({"user":"Sraman","status":0})
+	check=mycol.find_one({"user":"Sraman"},{"_id":0})
+if(check['status']==0):
+	return 0
+elif(check['status']==1):
+	mycol.delete_one({"user":"Sraman"})
+	mycol.insert_one({"user":"Sraman","status":0})
+	return 1
+
+
+
+for i in mycol.find():
+	print(i)
