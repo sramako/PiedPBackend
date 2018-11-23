@@ -81,6 +81,14 @@ def category():
 		menu.append(i['name'])
 	return json.dumps(menu,separators=(',',':'))
 
+@app.route('/delivery')
+def delivery():
+	mycol=mydb['places']
+	name=request.args.get('user')
+	m=dict()
+	if(name=="Ako"):
+		m = {"start":{"x":"12.93657","y":"77.579887"},"end":{"x":"12.935157","y":"77.53656"}}
+	return json.dumps(m,separators=(',',':'))
 @app.route('/payment')
 def payment():
 	mycol=mydb['payments']
