@@ -147,7 +147,7 @@ def signUp():
     return 'Failure'
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
-	CORS(app, resources={"*": {"origins": "*"}})
+	CORS(app, resources=r'/*')
     # app.config['CORS_HEADERS'] = 'Content-Type'
 	app.run(host='0.0.0.0', port=port,debug=True)
 	# app.run()
