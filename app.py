@@ -89,6 +89,23 @@ def delivery():
 	if(name=="Ako"):
 		m = {"start":{"x":"12.93657","y":"77.579887"},"end":{"x":"12.935157","y":"77.53656"}}
 	return json.dumps(m,separators=(',',':'))
+
+@app.route('/userdata')
+def userdata():
+	mycol=mydb['orders']
+	name=request.args.get('user')
+	freq = dict()
+	for i in mycol.find({'user':name},{'_id':0,'items':1}):
+		print(i['items'])
+		l = i['items']
+		items = list(l.keys())
+		for item in items:
+			if l[item] in freq:
+				freq[l[item]].append(item)
+			else:
+				freq[l[item]]=[item]
+	return json.dumps(freq,separators=(',',':'))
+
 @app.route('/payment')
 def payment():
 	mycol=mydb['payments']
@@ -125,6 +142,32 @@ def add_Res():
         mydb['places'].insert(obj)
         return 'Success'
     return 'not post'
+
+@app.route('/order', methods=['GET', 'POST'])
+def order():
+	if request.method == 'POST':
+		mydict = request.get_json(force=True)
+		print(mydict)
+		restaurant = mydict["name"]
+		user = mydict["user"]
+		lat = mydict["lat"]
+		long = mydict["long"]
+		del mydict['name']
+		del mydict['user']
+		del mydict['lat']
+		del mydict['long']
+		food = mydict
+		order=dict()
+		order["restaurant"] = restaurant
+		order["user"] = user
+		order["lat"] = lat
+		order["long"] = long
+		order["items"] = food
+		print(order)
+		mydb['orders'].insert(order)
+		return 'Success'
+	return 'not post'
+
 # endpoint to handle login
 @app.route('/login', methods=['POST'])
 def login():
@@ -135,6 +178,7 @@ def login():
             Session['username'] = request.form['username']
             return 'Success'
     return 'Failure'
+
 # endpoint to handle Sign-up
 @app.route('/signUp', methods=['POST'])
 def signUp():
@@ -145,6 +189,7 @@ def signUp():
         mydb['users'].insert({"username":user,"password":p1})
         return 'Success'
     return 'Failure'
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
 	CORS(app, resources=r'/*')

@@ -175,6 +175,41 @@ elif(check['status']==1):
 	return 1
 
 
+mydict={"name": "KFC", "VegZinger": 4, "ChickenZinger": 2}
 
+mydict
+restaurant = mydict["name"]
+user = mydict["user"]
+lat = mydict["lat"]
+long = mydict["long"]
+del mydict['name']
+del mydict['user']
+del mydict['lat']
+del mydict['long']
+food = mydict
+order=dict()
+order["restaurant"] = restaurant
+order["user"] = user
+order["lat"] = lat
+order["long"] = long
+order["items"] = food
+
+items = list(mydict.keys())
+items
+
+mycol=mydb["orders"]
 for i in mycol.find():
 	print(i)
+
+freq = dict()
+for i in mycol.find({'user':'Sraman'},{'_id':0,'items':1}):
+	print(i['items'])
+	l = i['items']
+	items = list(l.keys())
+	for item in items:
+		if l[item] in freq:
+			freq[l[item]].append(item)
+		else:
+			freq[l[item]]=list(item)
+
+4 in freq
