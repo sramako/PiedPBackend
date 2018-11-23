@@ -121,22 +121,23 @@ def gateway():
 def add_Res():
     if request.method == 'POST':
         obj = request.get_json(force=True)
-        print(obj)
         mydb['places'].insert(obj)
         return 'Success'
     return 'not post'
 # endpoint to handle login
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET','POST'])
 def login():
-    users = mydb['users']
-    login_user = users.find_one({'username' : request.form['username']})
-    if login_user:
-        if request.form['password']==login_user['password']:
-            Session['username'] = request.form['username']
-            return 'Success'
+    if request.method == 'POST':
+        obj = request.get_json(force=True)
+        users = mydb['users']
+        login_user = users.find_one({'username' : obj['username']})
+        if login_user:
+            if obj['password']==login_user['password']:
+                # Session['username'] = obj['username']
+                return 'Success'
     return 'Failure'
 # endpoint to handle Sign-up
-@app.route('/signUp', methods=['POST'])
+@app.route('/signUp', methods=['GET','POST'])
 def signUp():
     user = request.form['username']
     p1 = request.form['password1']
