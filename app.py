@@ -65,7 +65,7 @@ def price():
 
 	return "{price:NF}"
 
-@app.route('/content')
+@app.route('/category')
 def category():
 	mycol=mydb['places']
 	name=request.args.get('name')
