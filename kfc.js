@@ -21,11 +21,12 @@ category=""
 
     
 
-    $.get("http://localhost:5000/categorycontent?name=KFC&category=Chicken",
+    $.get("http://localhost:5000/categorycontent",
         {
-            category:" "
-            name: ""
+            "category":category,
+            "restaurant":name
         },
+        false,
         function(data) {
             window.obj=JSON.parse(data);
             console.log(obj);
