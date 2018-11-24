@@ -225,14 +225,20 @@ mycol=mydb["places"]
 for i in mycol.find({},{'_id':0}):
 	name=i['name']
 	for categories in i['Menu']:
-		if q not in categories['name'].lower():
+		if q in categories['name'].lower():
 			for dish in categories['items']:
-				if q in dish['name']:
-					print(name+" : "+dish['name'])
+				if name in m:
+					m[name].append(dish['name'])
+				else:
+					m[name]=[dish['name']]
 
 		else:
-			for dish in categories['items'].lower():
-				print("++"+name+" : "+dish['name'])
+			for dish in categories['items']:
+				if q in dish['name'].lower():
+					if name in m:
+						m[name].append(dish['name'])
+					else:
+						m[name]=[dish['name']]
 
 
 
