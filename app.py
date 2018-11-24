@@ -4,6 +4,17 @@ from flask import request
 import json
 from flask_cors import CORS, cross_origin
 import pymongo
+import math
+import sys
+
+def dot_product(v1, v2):
+    return sum(map(lambda x: x[0] * x[1], zip(v1, v2)))
+
+def cosine_measure(v1, v2):
+    prod = dot_product(v1, v2)
+    len1 = math.sqrt(dot_product(v1, v1))
+    len2 = math.sqrt(dot_product(v2, v2))
+    return prod
 
 app = Flask(__name__)
 
@@ -217,6 +228,33 @@ def signUp():
         return 'Success'
     return 'Failure'
 
+@app.route('/get_recommendation/<string:user>')
+def get_recommendation(user):
+    user_likes = mydb['orders'].find({"user":user})
+    all_items = []
+    for e in user_likes:
+        for k,v in e['items']:
+            for i in range(v):
+                all_items.append(k)
+    all_items = [sum(bytearray(x)) for x in all_items]
+    # now , we have a list of all the items that he ate , all time
+    restaurants = mydb['places'].find()
+    max = 10000
+    for each in restaurants:
+        dict_list = []
+        for l in each['Menu']:
+            for e in l:
+                if isinstance(e,list):
+                    for k in e:
+                        for m in k:
+                            for key,value in m.items():
+                                dict_list.append(key)
+        dict_list = [sum(bytearray(x)) for x in dict_list]
+        cosine = format(round(cosine_measure(all_items, dict_list), 3))
+        if int(cosine)<int(max) :
+            max = cosine
+            result = each['name']
+    return json.dumps(result)
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
 	CORS(app, resources=r'/*')
