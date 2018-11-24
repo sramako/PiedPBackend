@@ -179,6 +179,7 @@ def search():
 		for categories in i['Menu']:
 			if q in categories['name'].lower():
 				for dish in categories['items']:
+					print(name+' : '+dish['name'])
 					if name in m:
 						m[name].append(dish['name'])
 					else:
@@ -187,11 +188,12 @@ def search():
 			else:
 				for dish in categories['items']:
 					if q in dish['name'].lower():
+						print(name+' : '+dish['name'])
 						if name in m:
 							m[name].append(dish['name'])
 						else:
 							m[name]=[dish['name']]
-		return json.dumps(m,separators=(',',':'))
+	return json.dumps(m,separators=(',',':'))
 
 # endpoint to handle login
 @app.route('/login', methods=['GET','POST'])
