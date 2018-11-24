@@ -184,13 +184,13 @@ def search():
 					else:
 						m[name]=[dish['name']]
 
-		else:
-			for dish in categories['items']:
-				if q in dish['name']:
-					if name in m:
-						m[name].append(dish['name'])
-					else:
-						m[name]=[dish['name']]
+			else:
+				for dish in categories['items']:
+					if q in dish['name'].lower():
+						if name in m:
+							m[name].append(dish['name'])
+						else:
+							m[name]=[dish['name']]
 		return json.dumps(m,separators=(',',':'))
 
 # endpoint to handle login
