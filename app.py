@@ -167,6 +167,32 @@ def order():
 		return 'Success'
 	return 'not post'
 
+@app.route('/search')
+def search():
+	mycol=mydb['payments']
+	q=request.args.get('query')
+	q=q.lower()
+	mycol=mydb["places"]
+	m = dict()
+	for i in mycol.find({},{'_id':0}):
+		name=i['name']
+		for categories in i['Menu']:
+			if q in categories['name'].lower():
+				for dish in categories['items']:
+					if name in m:
+						m[name].append(dish['name'])
+					else:
+						m[name]=[dish['name']]
+
+		else:
+			for dish in categories['items']:
+				if q in dish['name']:
+					if name in m:
+						m[name].append(dish['name'])
+					else:
+						m[name]=[dish['name']]
+		return json.dumps(m,separators=(',',':'))
+
 # endpoint to handle login
 @app.route('/login', methods=['GET','POST'])
 def login():
